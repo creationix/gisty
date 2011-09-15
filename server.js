@@ -5,9 +5,9 @@ var HTTP = require('http'),
     Creationix = require('creationix');
 
 var handle = Stack(
-  Creationix.log(),
-  require('./lib/subApp')("/git/", 
-    require('./lib/basicAuth')(require('./lib/myAuth'), "Git Repos"),
+  require('./lib/log')(),
+  Creationix.substack("/git/", 
+    Creationix.auth(require('./lib/myAuth'), "Git Repos"),
     require('./lib/gitHttp')("/", process.env.HOME + "/git")  
   ),
   Creationix.static("/", __dirname + "/www", "index.html")
