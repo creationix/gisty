@@ -8,7 +8,7 @@ var handle = Stack(
   Creationix.log(),
   require('./lib/subApp')("/git/", 
     require('./lib/basicAuth')(require('./lib/myAuth'), "Git Repos"),
-    require('./lib/gitHttp')("/", "/home/tim/git")  
+    require('./lib/gitHttp')("/", process.env.HOME + "/git")  
   ),
   Creationix.static("/", __dirname + "/www", "index.html")
 );

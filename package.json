@@ -1,0 +1,18 @@
+{
+  "author": "Tim Caswell <tim@creationix.com>",
+  "name": "gisty",
+  "description": "A Gist-like server but with a little more...",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/creationix/gisty.git"
+  },
+  "engines": {
+    "node": ">=0.4.4"
+  },
+  "dependencies": {
+    "creationix": ">=0.1.5",
+    "stack": ">=0.0.3"
+  },
+  "devDependencies": {}
+}
