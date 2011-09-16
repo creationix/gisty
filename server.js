@@ -19,13 +19,22 @@ var options = {
 };
 
 // Serve over HTTP
-var httpPort = process.getuid() ? 8080 : 80;
+var isRoot = !process.getuid();
+
+var httpPort = isRoot ? 80: 8080;
 HTTP.createServer(handle).listen(httpPort);
-console.log("Server listening at http://localhost:" + httpPort + "/");
+console.log("Server listening at http://localhost" + (httpPort === 80 ? "" : ":" + httpPort) + "/");
 
 // Server over HTTPS
-var httpsPort = process.getuid() ? 8443 : 443;
+var httpsPort = isRoot ? 443 : 8443;
 HTTPS.createServer(options, handle).listen(httpsPort);
-console.log("Server listening at https://localhost:" + httpsPort + "/");
+console.log("Server listening at https://localhost" + (httpsPort === 443 ? "" : ":" + httpsPort) + "/");
 
+if (isRoot) {
+  var stat = FS.statSync(__filename);
+  console.log("Changing gid to " + stat.gid);
+  process.setgid(stat.gid);
+  console.log("Changing uid to " + stat.uid);
+  process.setuid(stat.uid);
+}
 
