@@ -1,3 +1,4 @@
 *.pem
 hashkey
 *.csr
+passwords.js
