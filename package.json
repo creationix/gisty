@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "creationix": ">=0.2.0",
-    "stack": ">=0.0.3"
+    "stack": ">=0.0.3",
+    "git-fs": ">=0.0.7"
   },
   "devDependencies": {}
 }

@@ -20,6 +20,9 @@ var handle = Stack(
     require('./lib/gitHttp')("/", process.env.HOME + "/git")
   ),
 
+  // Serve snippet generating script tags to the public at /snippets/
+  Creationix.route("GET", "/snippets/:user/:repo/:path", require('./lib/snippets')(process.env.HOME + "/git")),
+
   // Serve anything else as static content relative to the www folder
   Creationix.static("/", __dirname + "/www", "index.html")
 );
