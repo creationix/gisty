@@ -17,14 +17,14 @@ var handle = Stack(
     // Everything in this module requires authentication
     Creationix.auth(require('./lib/myAuth'), "Git Repos"),
     // This is a wrapper over the git-http-backend cgi program
-    require('./lib/gitHttp')("/", process.env.HOME + "/git")
+    require('./lib/gitHttp')("/home/tim/git")
   ),
 
   // Serve snippet generating script tags to the public at /snippets/
-  Creationix.route("GET", "/snippets/:user/:repo/:path", require('./lib/snippets')(process.env.HOME + "/git")),
+  Creationix.route("GET", "/snippets/:user/:repo/:path", require('./lib/snippets')("/home/tim/git")),
 
-  // Serve anything else as static content relative to the www folder
-  Creationix.static("/", __dirname + "/www", "index.html")
+  // Serve anything else as static content relative to home folder
+  Creationix.static("/", "/home/tim/", "index.html")
 );
 
 // Detect if we're running as root or not
